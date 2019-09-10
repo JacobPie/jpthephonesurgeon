@@ -571,9 +571,9 @@ def check_login():
 
 
 def send_email(email_entered, send_token, subject, template, text, link=None, name=None, contact_message=None, contact_email=None):
-    sender_email = "jacobpieczynski2004@gmail.com"
+    sender_email = "NOTTODAYHAK3R@NICETRY.COM"
     receiver_email = email_entered
-    password = "Rosalynpie908!"
+    password = "WhatDidISay?NotTodayBru"
 
     message = MIMEMultipart("alternative")
     message["Subject"] = subject
