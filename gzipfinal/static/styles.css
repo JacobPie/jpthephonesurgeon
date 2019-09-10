@@ -1,0 +1,331 @@
+/* Global styles */
+/* Colors */
+.orange-font {
+  color: #FC6600;
+  letter-spacing: 0.05em;
+}
+
+.orange-border {
+  border-color: #FC6600;
+}
+
+.orange-background {
+  background-color: #FC6600;
+}
+
+.background-gradient {
+  background-image: linear-gradient(180deg, #5E6770, #172747);
+}
+
+.bg-light {
+  background-image: linear-gradient(180deg, #f8f9fa, #dde7eb);
+  border-radius: 10px;
+}
+
+
+/* Layout */
+body,
+main {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn {
+  margin-bottom: 1rem;
+}
+
+footer {
+  height: 8vh;
+}
+
+
+/* Misc */
+.custom-box-shadow {
+  box-shadow: 5px 10px 20px #495057;
+}
+
+.card-img-bottom {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+
+/* Individual page styles */
+/* Index */
+.intro {
+  height: 90vh;
+  width: 100vw;
+  margin: auto;
+  margin-left: -2%;
+  background-image: url("imgs/background.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro h1 {
+  text-shadow: 3px 3px 4px #495057;
+}
+
+.welcome {
+  padding-top: 8%;
+  font-weight: 500;
+}
+
+.intro-button {
+  padding-left: 45%;
+  padding-top: 5%;
+}
+
+.card-img {
+  margin: -20%;
+  margin-left: 0;
+}
+
+.about h2 {
+  font-weight: 500;
+}
+
+.about-background,
+.contact,
+.section,
+.contact form {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+.why,
+.about,
+.contact {
+  margin-top: 2%;
+}
+
+
+.about {
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  margin-left: -2%;
+  margin-top: 2.5%;
+  background-image: url("imgs/background5.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.about-background {
+  margin-top: 2.5%;
+  background-color: #172747;
+  border-radius: 5px;
+}
+
+.about-background p {
+  width: 75%;
+  margin: auto;
+  padding-bottom: 2.5%;
+}
+
+.about-background h2 {
+  padding-top: 2%;
+}
+
+/* Login and Register forms */
+.login,
+.register {
+  width: 100vw;
+  margin: auto;
+  margin-left: -2%;
+}
+
+.login {
+  background-image: url("imgs/background3.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.register {
+  background-image: url("imgs/background4.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-register-form {
+  height: 100vh;
+  margin: auto;
+  padding-top: 2%;
+}
+
+.login-register-form .card {
+  margin-top: 15%;
+  box-shadow: 5px 10px 20px #495057;
+}
+
+
+/* Forgotten info */
+.forgot-form {
+  height: 100vh;
+  width: 45%;
+  margin: auto;
+}
+
+.forgot-form .card {
+  margin-top: 15%;
+  box-shadow: 5px 10px 20px #495057;
+}
+
+
+/* Dashboard */
+.dashboard-bg {
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  margin-left: -2%;
+  background-image: url("https://live.staticflickr.com/66/158583580_79e1c5f121_z.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dashboard {
+  width: 90%;
+  margin: auto;
+  padding-top: 1%;
+}
+
+
+/* Start a repair */
+.repair {
+  width: 100%;
+}
+
+
+/* Repair Updater */
+.repair_div {
+  width: 75%;
+  margin: auto;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+.headings {
+  padding-top: 4%;
+}
+
+.img-btn {
+  background-color: #343a40;
+  border: none;
+  height: 40vh;
+  width: 100%;
+  margin: auto;
+  border-radius: 2.5px;
+}
+
+
+/* Order */
+.order-form {
+  width: 70%;
+  margin: auto;
+}
+
+
+/* Payment */
+.payment-table {
+  width: 80%;
+  margin: auto;
+}
+
+#status {
+  display: none;
+}
+
+.card-btn {
+  margin: 2% 0 10% 10%;
+}
+
+
+/* Final */
+.final {
+  width: 80%;
+  margin: auto;
+}
+
+
+/* Status */
+.status-table {
+  width: 70%;
+  margin: auto;
+  margin-top: 3%;
+}
+
+.status-bg {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  margin-left: -2%;
+  background-image: url("imgs/background6.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.status {
+  width: 80%;
+  min-height: 50vh;
+  margin: auto;
+}
+
+
+/* Refer a friend */
+.refer-form {
+  width: 60%;
+  margin: auto;
+}
+
+.refer {
+  width: 75%;
+  margin: auto;
+}
+
+.refer-bg {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  margin-left: -2%;
+  background-image: url("imgs/background7.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.refer a {
+  margin: auto;
+}
+
+
+/* Confirm */
+.confirm {
+  height: 100vh;
+}
+
+.confirm h1,
+.confirm p {
+  padding-top: 10%;
+}
+
+.confirm p {
+  font-size: 30px;
+}

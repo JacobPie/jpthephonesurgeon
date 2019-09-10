@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Review Order
+{% endblock %}
+
+{% block main %}
+
+    <div class="confirmation bg-light h-100 repair">
+        <h1 class="display-4 text-center orange-font mb-3 headings">Confirmation</h1>
+        <div class="col-md-6 col-xs-12 mx-auto">
+            <h2 class="orange-font mb-2">{{ device }}</h2>
+                <p class="lead text-left">{{ color }} {{ brand }} {{ model }}</p>
+            <h2 class="orange-font mb-2">Repair</h2>
+                <p class="lead text-left">{{ repair }}</p>
+            <h2 class="orange-font mb-2">Price</h2>
+                <p class="lead text-left">{{ price | usd }}</p>
+            <a href="/order_review"><button class="btn orange-background orange-border text-light">Continue to payment</button></a>
+        </div>
+    </div>
+
+
+{% endblock %}

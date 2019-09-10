@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Status
+{% endblock %}
+
+{% block main %}
+
+    <div class="status-bg">
+        <div class="bg-light status">
+            <h1 class="headings display-4 orange-font text-center">Status</h1>
+            <table class="table status-table mt-5 mb-5 table-hover">
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Repair</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for row in rows %}
+                        {% set status = row['status'] %}
+                        <tr>
+                            <td>{{ row['model'] }}</td>
+                            <td>{{ row['repair'] }}</td>
+                            <td>{{ row['total'] | usd }}</td>
+                            {% if status == "Processing" %}
+                                <td class="text-info">{{ status }}</td>
+                            {% elif status == "Part Shipped" %}
+                                <td class="text-warning">{{ status }}</td>
+                            {% elif status == "Part Delivered" %}
+                                <td class="text-primary">{{ status }}</td>
+                            {% elif status == "Scheduling" %}
+                                <td class="text-warning">{{ status }}</td>
+                            {% elif status == "Repair Complete" %}
+                                <td class="text-success">{{ status }}</td>
+                            {% else %}
+                                <td class="text-danger">{{ status }}</td>
+                            {% endif %}
+                            <td>{{ row['timestamp'][0:10] }}</td>
+                        </tr>
+                    {% endfor %}
+                </thead>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

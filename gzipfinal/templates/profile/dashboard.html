@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+
+<div class="dashboard-bg">
+    <div class="bg-light dashboard">
+        <h1 class="headers display-4 orange-font text-center pt-3">Welcome, {{ firstname }}!</h1>
+        <div class="row mx-auto mt-4">
+            <div class="mx-auto col-md-5 col-xs-12">
+                <div class="card mb-3 h-100 custom-box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title orange-font">You have gone through <span class="text-success">{{ total_repairs }}</span> repairs!</h5>
+                        <p class="card-text lead">Every order really helps us out. Have any more broken devices?</p>
+                        <a href="/repair"><button class="btn orange-background orange-border text-light">Start a repair</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto col-md-5 col-xs-12">
+                <div class="card mb-3 h-100 custom-box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title orange-font">You are currently going through <span class="text-success">{{ current_repairs }}</span> repairs!</h5>
+                        <p class="card-text lead">Wow! Thanks again for your business. We hope we're pleasing you.</p>
+                        <a href="/status"><button class="btn orange-background orange-border text-light">Check their status</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-auto mt-4 pb-5">
+            <div class="mx-auto col-md-5 col-xs-12">
+                <div class="card mb-3 h-100 custom-box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title orange-font">Are you pleased with your repair?</h5>
+                        <p class="card-text lead">We really hope you are. Please leave us a review!</p>
+                        <a href="shorturl.at/gCW37"><button class="btn orange-background orange-border text-light">Leave us a review</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto col-md-5 col-xs-12">
+                <div class="card mb-3 h-100 custom-box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title orange-font">Think a friend needs our services?</h5>
+                        <p class="card-text lead">If you refer a friend, you get 15% off your next order.</p>
+                        <a href="/refer"><button class="btn orange-background orange-border text-light">Refer a friend</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

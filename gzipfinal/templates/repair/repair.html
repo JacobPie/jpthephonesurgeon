@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Start a Repair
+{% endblock %}
+
+{% block main %}
+
+<div class="repair bg-light">
+    <!-- Custom headings -->
+    <div class="headings">
+        <h1 class="display-4 orange-font text-center">
+        {% if heading == 0 %}
+            What type of device do you have?</h1>
+            <p class="lead text-center">Don't worry, we can fix just about anything. Questions? Just send us an email!</p>
+        {% elif heading == 1 %}
+            Now it's time to find your brand.</h1>
+            <p class="lead text-center">This is easy! It's all in the name.</p>
+        {% elif heading == 2 %}
+            What model of device do you have?</h1>
+            <p class="lead text-center">Don't know what model you have? Look in the settings of your device for a model number then search it up!</p>
+        {% elif heading == 3 %}
+            Phew, we're almost done. What repair do you need done?</h1>
+            <p class="lead text-center">We know it's hard trusting someone with your device. Don't worry! We'll fix it well.</p>
+        {% elif heading == 4 %}
+            Last step. What color is the bezel on your screen?</h1>
+            <p class="lead text-center">In case you were wondering, it is the border that goes around your screen.</p>
+        {% endif %}
+    </div>
+
+    <!-- Prints out images -->
+    <div class="row">
+        {% for print in prints %}
+        {% set img = prints[print] %}
+            <div class="col-md-3 col-sm-6 repair_div">
+                <div class="card bg-dark mb-3 border-dark h-100 custom-box-shadow">
+                    <div class="card-body">
+                        <form action="/repair_updater" method="post" id="repair_updater" class="repair_updater">
+                            <div class="card-title">
+                                <h2 class="orange-font">{{ print }}</h2>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-light">{{ captions[print] }}</h6>
+                            <button type="submit" class="img-btn" name="input" id="input" value="{{ print }}">
+                                <img src="{{ img }}" alt="image" class="card-img-bottom">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

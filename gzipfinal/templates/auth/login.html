@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+
+    <div class="login">
+        <div class="login-register-form col-lg-4 col-md-8">
+            <div class="card bg-light border-light">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h1 class="display-4 orange-font text-center">Login</h1>
+                    </div>
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input autocomplete="off" autofocus class="form-control" name="email" id="email" type="text" tabindex="0">
+                            <div class="invalid-feedback">
+                                Email or password do not match
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" name="password" id="password" type="password" tabindex="0">
+                            <div class="invalid-feedback">
+                                Email or password do not match
+                            </div>
+                        </div>
+                        <p class="small"><a href="/forgotp" tabindex="-1">Forgot your password?</a></p>
+                        <button class="btn orange-background orange-border text-light" type="submit">Log In</button>
+                    </form>
+                    <p class="lead">Don't have an account? <a href="/register">Register!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client side form validation -->
+    <script>
+        $(document).ready(function() {
+            var myForm = document.querySelector('form');
+            myForm.onsubmit = function(data){
+                var email = document.getElementById("email");
+                var password = document.getElementById("password");
+                data.preventDefault();
+                $.get('/check_login?email=' + email.value + '?password=' + password.value, function(result) {
+                    email.classList.remove("is-invalid");
+                    password.classList.remove("is-invalid");
+                    var errors = 0
+                    if (result == false || email.value == "") {
+                        email.classList.add("is-invalid");
+                        errors++;
+                    }
+                    if (password.value == "") {
+                        password.classList.add("is-invalid");
+                        errors++;
+                    }
+                    if (errors == 0) {
+                        myForm.submit();
+                    }
+                });
+            };
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+
+  <!-- Intro -->
+  <div class="intro bg-secondary custom-box-shadow">
+    <h1 class="display-1 text-center orange-font welcome">Welcome to JP the Phone Surgeon</h1>
+    <div class="intro-button">
+      <a href="/repair" class="btn btn-dark text-light orange-border orange-background custom-box-shadow" role="button"><span class="lead">Start a Repair</span></a>
+    </div>
+  </div>
+
+  <!-- Why JP Repairs? -->
+  <div class="why p-3 bg-light">
+    <h2 class="display-3 text-center"><span class="orange-font">Why JP the Phone Surgeon?</span></h2>
+    <div class="row">
+      <div class="card-group text-light mt-3">
+        <!-- Ease -->
+        <div class="col-md-4 col-sm-12">
+          <div class="card bg-dark mb-3 border-dark h-100 custom-box-shadow">
+            <div class="card-body">
+              <img src="../static/imgs/speed.png" alt="Speed" class="card-img-top card-img">
+              <div class="card-title">
+                <h3 class="h1 orange-font">Ease</h3>
+              </div>
+              <p class="lead text-justify">
+                JP the Phone Surgeon has the easiest repair process out of anyone.
+                Once you select a device and its repair, everything is done for you!
+                The order is automatically put in and once the part arrives at the shop, we send you an email to schedule the repair.
+                On the day of the repair, one of our employees comes to your home and picks up your device or you can deliver it yourself.
+                In a few hours you will have a fixed, cleaned device ready for use.
+              </p>
+              <a href="/repair" class="btn btn-dark text-light orange-border orange-background" role="button"><span class="lead">Start a Repair</span></a>
+            </div>
+          </div>
+        </div>
+        <!-- Reliability -->
+        <div class="col-md-4 col-sm-12">
+          <div class="card bg-dark mb-3 border-dark h-100 custom-box-shadow">
+            <div class="card-body">
+              <img src="../static/imgs/reliable.png" alt="Reliable" class="card-img-top card-img">
+              <div class="card-title">
+                <h3 class="h1 orange-font">Reliability</h3>
+              </div>
+              <p class="lead text-justify">
+                JP the Phone Surgeon is the most reliable device repair service in Arizona.
+                We know your devices are expensive and important to you.
+                We take the utmost care handling your devices and ensure our repairs are taken with patience and precision.
+                The parts we use are of the highest quality, we will never use cheap, shabby materials.
+                After the repair, your device will be as good as new.
+                Over the course of our service, we have never failed a repair.
+                We learn from each repair, something that keeps the quality of our repairs top-notch.
+                You can never beat JP the Phone Surgeon reliability!
+              </p>
+              <a href="/repair" class="btn btn-dark text-light orange-border orange-background" role="button"><span class="lead">Start a Repair</span></a>
+            </div>
+          </div>
+        </div>
+        <!-- Price -->
+        <div class="col-md-4 col-sm-12">
+          <div class="card bg-dark mb-3 border-dark h-100 custom-box-shadow">
+            <div class="card-body">
+              <img src="../static/imgs/money.png" alt="Cheap" class="card-img-top card-img">
+              <div class="card-title">
+                <h3 class="h1 orange-font">Price</h3>
+              </div>
+              <p class="lead text-justify">
+                Our biggest selling point and the thing that sets us apart from the competition is our price.
+                We complete repairs at exponentially cheaper rates compared to any of our competitors, in most cases charging half their price.
+                While we are a budget repair company, we will never sacrifice your quality for price.
+                JP the Phone Surgeon promises to offer the cheapest yet highest quality repairs in the valley.
+                For all repairs, we heavily undercut the bulky companies that screw their customers in their price.
+                We guarantee we are the cheapest place to repair your device.
+              </p>
+              <a href="/repair" class="btn btn-dark text-light orange-border orange-background" role="button"><span class="lead">Start a Repair</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us -->
+  <div class="about p-3 bg-secondary custom-box-shadow">
+    <div class="about-background">
+      <h2 class="display-3 text-center"><span class="orange-font">About Us</span></h2>
+      <p class="lead text-justify text-light">
+        The story of JP the Phone Surgeon starts with a teenager who couldn't sit still.
+        He loved to learn and grow his knowledge, constantly finding a new fascination to study.
+        One day, he discovered a fascination with fixing phones.
+        He loved technology and wanted to know more about what was in them and how they ran.
+        From this fascination, spurred on by the repair of his father's broken phone, he decided to make a business.
+        He collected all the broken devices he could and dissected them, learning every odd and end about them.
+        In this painstaking process, he felt confident enough to fix them for people.
+        So he started JP the Phone Surgeon, an almost completely word of mouth company.
+        He undercut the prices of his competitors, increased the service, and made it far easier to get your device repaired than any other alternative.
+        JP the Phone Surgeon was started in 2019 by Jacob Pieczynski, a fifteen year old who loved to learn.
+      </p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact bg-light p-3 custom-box-shadow" id="contact">
+    <h2 class="display-3 text-center"><span class="orange-font">Contact</span></h2>
+    <form class="needs-validation" novalidate method="post" action="/contact">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+          <div class="invalid-feedback">
+            Please provide a name
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <div class="invalid-feedback">
+            Please provide a valid email
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Message</label>
+          <textarea class="form-control message" id="message" rows="3" required name="message"></textarea>
+          <div class="invalid-feedback">
+            Please provide a message
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <button type="submit" class="btn btn-dark text-light orange-border orange-background">Submit</button>
+      </form>
+    </div>
+
+
+{% endblock %}
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>

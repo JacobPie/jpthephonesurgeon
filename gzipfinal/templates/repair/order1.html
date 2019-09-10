@@ -1,0 +1,212 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block main %}
+
+    <div class="confirmation bg-light h-100">
+        <h1 class="display-4 text-center orange-font headings">Order</h1>
+        <div class="form">
+            <form action="/order_review" method="post" class="order-form">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="input_firstname">First Name</label>
+                        <input type="text" class="form-control is-valid" placeholder="First name" name="input_firstname" id="input_firstname" value="{{ firstname }}" autofocus>
+                        <div class="invalid-feedback">
+                            Come on, I know you have a first name!
+                        </div>
+                        <div class="valid-feedback">
+                            Hello there!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="input_lastname">Last Name</label>
+                        <input type="text" class="form-control is-valid" placeholder="Last name" name="input_lastname" id="input_lastname" value="{{ lastname }}">
+                        <div class="invalid-feedback">
+                            Please input your last name.
+                        </div>
+                        <div class="valid-feedback">
+                            Wow! I like that name!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input_email">Email</label>
+                    <input type="email" class="form-control is-valid" id="input_email" name="input_email" placeholder="Email" value="{{ email }}">
+                    <div class="invalid-feedback">
+                        Shh... we won't tell anyone.
+                    </div>
+                    <div class="valid-feedback">
+                        Now we can ensure you get your repair.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="1234 Main St">
+                    <div class="invalid-feedback">
+                        Trust us, we won't give this to anyone.
+                    </div>
+                    <div class="valid-feedback">
+                        We only use your address to pick up and deliver your item.
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" name="inputCity" id="inputCity" placeholder="San Tan Valley">
+                        <div class="invalid-feedback">
+                            This just helps us find where you are.
+                        </div>
+                        <div class="valid-feedback">
+                            Cities are constantly changing!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" name="inputState" class="form-control">
+                            <option selected value="Arizona">Arizona</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            We only service Arizona at the moment.
+                        </div>
+                        <div class="valid-feedback">
+                            It's too hot here...
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip Code</label>
+                        <input type="number" min="0" max="100000" class="form-control" id="inputZip" name="inputZip">
+                        <div class="invalid-feedback">
+                            Depending on your zip code, we can give you a discount!
+                        </div>
+                        <div class="valid-feedback">
+                            You can see the price for pickup and delivery soon.
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn orange-background orange-border text-light">Continue to review</button>
+            </form>
+
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalShipping" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Total for pickup and delivery</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="lead" id="price">Based off of your zipcode, we have determined the total for pickup and delivery to cost $</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-secondary text-light" id="deliver">Deliver to JP the Phone Surgeon</button>
+                            <button type="button" class="btn orange-background orange-border text-light" id="accept">Accept Price to Continue</button>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var myForm = document.querySelector('form');
+            myForm.onsubmit = function(data){
+                data.preventDefault();
+                // Validates form
+                var firstname = document.getElementById("input_firstname");
+                var lastname = document.getElementById("input_lastname");
+                var email = document.getElementById("input_email");
+                var address = document.getElementById("inputAddress");
+                var city = document.getElementById("inputCity");
+                var state = document.getElementById("inputState");
+                var zip = document.getElementById("inputZip");
+                $.get('/check?email=' + email.value, function(result) {
+                    firstname.classList.remove("is-invalid", "is-valid");
+                    lastname.classList.remove("is-invalid", "is-valid");
+                    email.classList.remove("is-invalid", "is-valid");
+                    address.classList.remove("is-invalid", "is-valid");
+                    city.classList.remove("is-invalid", "is-valid");
+                    state.classList.remove("is-invalid", "is-valid");
+                    zip.classList.remove("is-invalid", "is-valid");
+                    var errors = 0
+                    if (result == true) {
+                        email.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        email.classList.add("is-valid");
+                    }
+                    if (firstname.value == "") {
+                        firstname.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        firstname.classList.add("is-valid");
+                    }
+                    if (lastname.value == "") {
+                        lastname.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        lastname.classList.add("is-valid")
+                    }
+                    if (address.value == "") {
+                        address.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        address.classList.add("is-valid")
+                    }
+                    if (city.value == "") {
+                        city.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        city.classList.add("is-valid")
+                    }
+                    if (state.value == "") {
+                        state.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        state.classList.add("is-valid")
+                    }
+                    if (zip.value == "") {
+                        zip.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        zip.classList.add("is-valid")
+                    }
+                    if (errors == 0) {
+                        // Gets shipping price
+                        var zipcode = document.getElementById("inputZip");
+                        $.get('/zip_check?zip=' + zipcode.value, function(result) {
+                            $('#modal').modal();
+                            // Ensures shipping is accepted
+                            var accept = document.getElementById("accept");
+                            var deliver = document.getElementById("deliver")
+                            var price = document.getElementById("price").innerHTML = "Based off of your zipcode, we have determined the total for pickup and delivery to cost $" + result;
+                            accept.onclick = function(){
+                                myForm.submit();
+                            };
+                            deliver.onclick = function(){
+                                $.post('/zip_check', '0', function(){
+                                    alert("POSTED")
+                                });
+                                myForm.submit();
+                            };
+
+                        });
+                    }
+                });
+            };
+        });
+    </script>
+
+
+{% endblock %}

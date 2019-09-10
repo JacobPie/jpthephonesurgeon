@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirm Email
+{% endblock %}
+
+{% block main %}
+
+<div class="bg-light confirm">
+    <h1 class="headers display-4 orange-font text-center pt-3">Reset Password</h1>
+    <form action="/reset_password" method="post" class="refer-form form">
+        <div class="form-group">
+            <label for="lastname">New Password</label>
+            <input autocomplete="off" class="form-control" name="new_password" type="password" id="new_password">
+            <div class="invalid-feedback">
+                Please input a new password
+            </div>
+            <div class="valid-feedback">
+                All Done!
+            </div>
+        </div>
+
+        <button class="btn orange-background orange-border text-light" type="submit">Reset Password</button>
+    </form>
+</div>
+
+<!-- Client side form validation -->
+<script>
+    $(document).ready(function() {
+        var myForm = document.querySelector('form');
+        myForm.onsubmit = function(data){
+            var password = document.getElementById("new_password");
+            data.preventDefault();
+            password.classList.remove("is-invalid", "is-valid");
+            var errors = 0
+            if (password.value.length < 8) {
+                password.classList.add("is-invalid");
+                errors++;
+            }
+            else {
+                password.classList.add("is-valid")
+            }
+            if (errors == 0) {
+                myForm.submit();
+            }
+        };
+    });
+</script>
+
+{% endblock %}

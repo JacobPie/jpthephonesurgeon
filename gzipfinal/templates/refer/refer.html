@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Refer a friend
+{% endblock %}
+
+{% block main %}
+
+<div class="refer-bg">
+    <div class="bg-light h-100 status">
+        <h1 class="headings display-4 orange-font text-center">Refer a friend</h1>
+        <p class="lead text-center">Refer a friend to receive 15% off your next order!</p>
+
+        <form action="/refer" method="post" id="refer" class="refer-form form">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input autocomplete="off" autofocus class="form-control" name="firstname" type="text" id="firstname">
+                <div class="invalid-feedback">
+                    Please input a first name
+                </div>
+                <div class="valid-feedback">
+                    We hope your friend likes us!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input autocomplete="off" class="form-control" name="lastname" type="text" id="lastname">
+                <div class="invalid-feedback">
+                    Please input a last name
+                </div>
+                <div class="valid-feedback">
+                    Almost there!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input autocomplete="off" class="form-control" name="email" type="email" id="email">
+                <div class="invalid-feedback">
+                    User already exists
+                </div>
+                <div class="valid-feedback">
+                    We've got a new user on the loose!
+                </div>
+            </div>
+
+            <button class="btn orange-background orange-border text-light" type="submit">Refer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var myForm = document.querySelector('form');
+        myForm.onsubmit = function(data){
+            var firstname = document.getElementById("firstname");
+            var lastname = document.getElementById("lastname");
+            var email = document.getElementById("email");
+            data.preventDefault();
+            $.get('/check?email=' + email.value, function(result) {
+                firstname.classList.remove("is-invalid", "is-valid");
+                lastname.classList.remove("is-invalid", "is-valid");
+                email.classList.remove("is-invalid", "is-valid");
+                var errors = 0;
+                if (result == false) {
+                    email.classList.add("is-invalid");
+                    errors++;
+                }
+                else {
+                    email.classList.add("is-valid");
+                }
+                if (firstname.value == "") {
+                    firstname.classList.add("is-invalid");
+                    errors++;
+                }
+                else {
+                    firstname.classList.add("is-valid");
+                }
+                if (lastname.value == "") {
+                    lastname.classList.add("is-invalid");
+                    errors++;
+                }
+                else {
+                    lastname.classList.add("is-valid");
+                }
+                if (errors == 0) {
+                    myForm.submit();
+                }
+            });
+        };
+    });
+</script>
+
+{% endblock %}

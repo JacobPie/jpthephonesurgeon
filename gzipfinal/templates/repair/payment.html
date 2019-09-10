@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Payment
+{% endblock %}
+
+{% block main %}
+
+    <div class="confirmation bg-light h-100">
+        <h1 class="display-4 text-center orange-font headings pb-3">Payment</h1>
+        <div class="form">
+            <table class="table table-hover payment-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="lead orange-text">{{ repair }}</td>
+                    <td>{{price | usd }}</td>
+                </tr>
+                <tr>
+                    <td class="lead orange-text">Delivery</td>
+                    <td>{{ shipping | usd }}</td>
+                </tr>
+                <tr>
+                    <td class="lead orange-text">Discounts</td>
+                    {% if coupon > 0 %}
+                        <td class="text-success">{{ coupon }}%</td>
+                    {% else %}
+                        <td>0%</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td class="lead orange-text"><strong>Total:</strong></td>
+                    <td><strong>{{ total | usd }}</strong></td>
+                </tr>
+            </table>
+            <button type="button" class="btn btn-primary card-btn" id="custom-button">Pay with Card</button>
+
+            <div id="status">
+              <br>
+              <div class="alert alert-primary" id="alert" role="alert"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test card 4242424242424242 -->
+    <!-- Uses stripe to make payment -->
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+      var handler = StripeCheckout.configure({
+        key: "{{ key }}",
+        image: "../static/imgs/logo.png",
+        email: "{{ email }}",
+        billingAddress: "true",
+        allowRememberMe: false,
+        locale: "auto",
+        token: function(token) {
+          fetch("/charge", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({
+              token: token.id,
+            }),
+          })
+          .then(function(response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Something went wrong.');
+            }
+          })
+          .then(function(jsonResponse) {
+            window.location.href = "http://127.0.0.1:5000/payment";
+          })
+          .catch(function(err) {
+            // update the alert message
+            document.getElementById("alert").innerText = "Something went wrong."
+            // show the bootstrap alert
+            document.getElementById("status").style.display = "inline";
+          });
+        }
+      });
+      document.getElementById("custom-button").addEventListener("click", function(e) {
+        // hide the bootstrap alert
+        document.getElementById("status").style.display = "none";
+        handler.open({
+          name: "{{ description }}",
+          description: "{{ description }}",
+          amount: "{{ total * 100 }}",
+        });
+        e.preventDefault();
+      });
+
+      window.addEventListener("popstate", function() {
+        handler.close();
+      });
+    </script>
+
+
+{% endblock %}

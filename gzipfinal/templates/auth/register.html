@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+
+    <div class="register">
+        <div class="login-register-form col-lg-4 col-md-8">
+            <div class="card bg-light border-light">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h1 class="display-4 orange-font text-center">Register</h1>
+                    </div>
+                    <form action="/register" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="firstname">First Name</label>
+                                <input autocomplete="off" autofocus class="form-control" name="firstname" type="text" id="firstname">
+                                <div class="invalid-feedback">
+                                    Please input a first name
+                                </div>
+                                <div class="valid-feedback">
+                                    Hello!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="lastname">Last Name</label>
+                                <input autocomplete="off" class="form-control" name="lastname" type="text" id="lastname">
+                                <div class="invalid-feedback">
+                                    Please input a last name
+                                </div>
+                                <div class="valid-feedback">
+                                    I like that name!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input autocomplete="off" class="form-control" name="email" type="email" id="email">
+                            <div class="invalid-feedback">
+                                Please input a valid email or there is an account with this email already
+                            </div>
+                            <div class="valid-feedback">
+                                Ooh, now we can send you fun messages :)
+                            </div>
+                            <p class="small">Your email is safe with us!</p>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="password">Password</label>
+                                <input class="form-control" name="password" type="password" id="password1">
+                                <div class="invalid-feedback">
+                                    Password must be at least 8 characters long
+                                </div>
+                                <div class="valid-feedback">
+                                    Ssh! Don't tell this to anyone!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="password2">Confirm Password</label>
+                                <input class="form-control" name="confirmation" id="password2" type="password">
+                                <div class="invalid-feedback">
+                                    Passwords do not match
+                                </div>
+                                <div class="valid-feedback">
+                                    Your passwords match!
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn orange-background orange-border text-light" type="submit">Register</button>
+                    </form>
+                    <p class="lead">Have an account already? <a href="/login">Login!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client side form validation -->
+    <script>
+        $(document).ready(function() {
+            var myForm = document.querySelector('form');
+            myForm.onsubmit = function(data){
+                var firstname = document.getElementById("firstname");
+                var lastname = document.getElementById("lastname");
+                var email = document.getElementById("email");
+                var password1 = document.getElementById("password1");
+                var password2 = document.getElementById("password2");
+                data.preventDefault();
+                $.get('/check?email=' + email.value, function(result) {
+                    firstname.classList.remove("is-invalid", "is-valid");
+                    lastname.classList.remove("is-invalid", "is-valid");
+                    email.classList.remove("is-invalid", "is-valid");
+                    password1.classList.remove("is-invalid", "is-valid");
+                    password2.classList.remove("is-invalid", "is-valid");
+                    var errors = 0
+                    if (result==false) {
+                        email.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        email.classList.add("is-valid");
+                    }
+                    if (firstname.value == "") {
+                        firstname.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        firstname.classList.add("is-valid");
+                    }
+                    if (lastname.value == "") {
+                        lastname.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        lastname.classList.add("is-valid")
+                    }
+                    if (password1.value != password2.value || password2.value == "") {
+                        password2.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        password2.classList.add("is-valid")
+                    }
+                    if (password1.value.length < 8) {
+                        password1.classList.add("is-invalid");
+                        errors++;
+                    }
+                    else {
+                        password1.classList.add("is-valid")
+                    }
+                    if (errors == 0) {
+                        myForm.submit();
+                    }
+                });
+            };
+        });
+    </script>
+
+{% endblock %}
